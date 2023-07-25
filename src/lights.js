@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
+import Link from '@mui/material/Link'; // Import the Link component
 
 const LightBulb = () => {
   const [isLightOn, setIsLightOn] = useState(false);
@@ -35,8 +36,12 @@ const LightBulb = () => {
       />
       {/* Styled button for toggling the light */}
       <StyledButton variant="contained" isOnProp={isLightOn} onClick={handleToggleLight}>
-        {isLightOn ? "Turn On" : "Turn Off"}
+        {isLightOn ? "Turn Off" : "Turn On"}
       </StyledButton>
+      <p>© <Link href="https://www.linkedin.com/in/everlyne-akinyi-90683a1b5/" target="_blank" rel="noopener noreferrer">Everlyne akinyi</Link>. All rights reserved.</p>
+      
+      <p><Link href="https://github.com/evahaudi/lighting" target="_blank" rel="noopener noreferrer">Project Github Link</Link></p>
+      
     </Container>
   );
 };
