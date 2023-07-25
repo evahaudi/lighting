@@ -5,42 +5,39 @@ import { styled } from '@mui/material/styles';
 const LightBulb = () => {
   const [isLightOn, setIsLightOn] = useState(false);
 
-  const handleBtnOn = () => {
-    setIsLightOn(true);
-  };
-
-  const handleBtnOff = () => {
-    setIsLightOn(false);
+  const handleToggleLight = () => {
+    setIsLightOn((prevIsLightOn) => !prevIsLightOn);
   };
 
   // Custom styled button using Material-UI
-  const StyledButton = styled(Button)(({ isOn }) => ({
-    margin: '10px',
-    backgroundColor: isOn ? '#4caf50' : '#1976d2',
+  const StyledButton = styled(Button)(({ isOnProp }) => ({
+    backgroundColor: isOnProp ? '#4caf50' : '#1976d2',
     color: '#fff',
     '&:hover': {
-      backgroundColor: isOn ? '#1b5e20' : '#0059b3',
+      backgroundColor: isOnProp ? '#1b5e20' : '#0059b3',
     },
   }));
 
+  // Container styles for arranging the elements in parallel
+  const Container = styled('div')({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  });
+
   return (
-    <div>
+    <Container>
       <img
         id="bulb"
         src={isLightOn ? "images/lights-on.png" : "images/lights-off.png"}
         alt={isLightOn ? "Lights On" : "Lights Off"}
       />
-      <p id="message-el">
-        {isLightOn ? "Lights On" : "Lights Off"}
-      </p>
-      {/* Styled buttons */}
-      <StyledButton variant="contained" isOn={isLightOn} onClick={handleBtnOn}>
-        Turn On
+      {/* Styled button for toggling the light */}
+      <StyledButton variant="contained" isOnProp={isLightOn} onClick={handleToggleLight}>
+        {isLightOn ? "Turn On" : "Turn Off"}
       </StyledButton>
-      <StyledButton variant="contained" isOn={!isLightOn} onClick={handleBtnOff}>
-        Turn Off
-      </StyledButton>
-    </div>
+    </Container>
   );
 };
 
